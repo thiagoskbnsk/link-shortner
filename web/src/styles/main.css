@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply inline-flex w-fit items-center justify-center rounded-lg;
+    @apply text-md;
+    @apply cursor-pointer;
+  }
+
+  @keyframes pulseAnimation {
+    0%,
+    100% {
+      transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-pulse-custom {
+    animation: pulseAnimation 2s ease-in-out 0s infinite normal none running;
+  }
+
+  .loading {
+    @apply relative;
+
+    &::after,
+    &::before {
+      @apply content-[''];
+      @apply absolute inset-0 m-auto inline-flex h-full w-full items-center justify-center;
+      @apply animate-pulse-custom rounded-full bg-white bg-opacity-30;
+    }
+
+    &::after {
+      animation-delay: -1s;
+    }
+  }
+}
